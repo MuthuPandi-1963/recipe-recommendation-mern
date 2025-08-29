@@ -12,7 +12,7 @@ export default function Login() {
   return (
     <div className='w-full h-full m-auto'>
     <form className="grid p-4 mx-10 min-h-full content-center gap-4">  
-      {signin?  <h1>Sign Up Page</h1>:<h1 className='text-center font-bold'>Login Page</h1>}
+      {signin?  <h1 className='font-bold'>Sign Up Page</h1>:<h1 className='text-center font-bold'>Login Page</h1>}
         <div className="form-inputs">
         <Label>Name</Label>
         <Input placeholder="enter a name"/>
