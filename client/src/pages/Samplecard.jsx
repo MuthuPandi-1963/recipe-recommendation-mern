@@ -2,10 +2,12 @@ import {CardHeader,Card,CardAction,CardContent,CardFooter,CardDescription,CardTi
 import {Button} from '../components/ui/button'
 import {  useNavigate } from 'react-router-dom';
 import {FcLike} from 'react-icons/fc'
-import { useState } from 'react';
+import { useState ,useContext} from 'react';
+import { ProductContext } from '../Context/ProductContext';
 export default function Samplecards() {
     const [like,Setlike]=useState(false)
     const navigate =useNavigate();
+    const value =useContext(ProductContext)
     const HandleOnclik=()=>{
             navigate('recipe:id')
     }
@@ -16,7 +18,7 @@ export default function Samplecards() {
         <div className="relative">
 
         <Card >
-            <CardTitle>Soup</CardTitle>
+            <CardTitle>{value.name}</CardTitle>
             <CardHeader>chilli soup</CardHeader>
             <CardAction>
                 {like&& <div className='absolute top-2 right-2 '>
