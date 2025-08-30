@@ -6,36 +6,44 @@ import { useState ,useContext} from 'react';
 import { ProductContext } from '../Context/ProductContext';
 export default function Samplecards() {
     const [like,Setlike]=useState(false)
+    const [cardselect,setCardselect]=useState()
     const navigate =useNavigate();
     const value =useContext(ProductContext)
     const HandleOnclik=()=>{
             navigate('recipe:id')
     }
     console.log();
-    
-    
-    const liking=()=>{
-            Setlike(!like)
+    const liking=(id)=>{
+        Setlike(true)
+        setCardselect(id)
+        console.log(cardselect,setCardselect,like);
+        
     }
     return(
         <div className=" flex   gap-5 my-4">
          {value.Provider.map((card)=>{
             return(
-             <Card className='p-4 m-2 relative ' >
-            <CardTitle className='text-gray-600 font-semibold text-lg'>{card.name}</CardTitle>
-            <CardHeader className='text-start p-0 font-bold min-h-fit text-2xl'>{card.category}</CardHeader>
-            <CardAction>
-                {like&&<div className='absolute top-2 right-2 '>
-                    <FcLike size={24} onClick={()=>{Setlike(false)}}/>
-                    </div>}             
+             <Card key={card.id} className='p-4 min-w-2xs relative ' >
+            <CardHeader >
+               <CardTitle> {card.name}
+                </CardTitle>      
+                      <CardTitle className='text-gray-600 font-semibold text-lg'>{card.category}</CardTitle>
+                <CardDescription className='gap-2 grid'>{card.ingredients.map((ingredient)=>{<li key={ingredient.id} className='gap-2.5'>{ingredient}</li>
+                })}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                {card.tags}
+                <span>rating :</span>{card.rating}
+                <h1><span>price :</span>{card.price}</h1>
+                </CardContent>
+            <CardFooter className='gap-2 grid'>
+           <CardAction>
+              {cardselect==card.productId ?<div className='absolute top-2 right-2 '>
+                   {like && <FcLike size={24} onClick={()=>{Setlike(false)}}/>}
+                    </div> :<div></div> }     
             </CardAction>
-                <CardContent>{card.tags}</CardContent>
-                <CardDescription>{card.ingredients}</CardDescription>
-            <CardFooter className=' gap-2 grid '>
-            <CardContent>{card.rating}</CardContent>
-                <h1>{card.price}</h1>
                 <Button onClick={HandleOnclik}>view desc</Button>
-                  <Button className='bg-gray-700 py-0 ' onClick={liking}>
+                  <Button className='bg-gray-700 py-0 ' onClick={()=>{liking(card.productId)}}>
                     favorite
                     </Button>
             </CardFooter>
