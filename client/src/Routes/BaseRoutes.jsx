@@ -6,7 +6,7 @@ import Cards from '../pages/Cards'
 import AuthLayout from '../layouts/AuthLayout'
 import Login from '../pages/Login'
 import Product from '../layouts/Product'
-
+import Mart from '../utilities/Mart'
 export default function BaseRoutes() {
     return(
          <Routes>

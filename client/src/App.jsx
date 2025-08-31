@@ -1,9 +1,8 @@
-import {ProductProvider} from "./Context/ProductContext"
-import BaseRoutes from "./Routes/BaseRoutes"  
+import Providers from "./utilities/Providers"
 export default function App() {
   return (
- <ProductProvider>
-    <BaseRoutes/>
- </ProductProvider>
+    <Providers/>
+ 
+ 
   )
 }

@@ -1,5 +1,5 @@
-import {CardHeader,Card,CardAction,CardContent,CardFooter,CardDescription,CardTitle} from '../components/ui/card'
 import Samplecards from '../utilities/Samplecard'
+import Mart  from '../utilities/Mart'
 export default function Cards() {
     return(
         <div>
@@ -7,6 +7,7 @@ export default function Cards() {
        <div className="grid grid-cols-1 gap-5 overflow-x-auto  border  min-w-full ">
         <Samplecards/>
         </div>
+        <Mart />
        </div>
     )
 };
