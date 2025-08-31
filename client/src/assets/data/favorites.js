@@ -1,4 +1,4 @@
-
+import burger from './images/burger/7127a09d-0913-49d6-ac5b-92cbec704f24.jpeg'
 export const sampleFavorite = [
   {
     productId: "00001",
@@ -7,7 +7,7 @@ export const sampleFavorite = [
     ingredients: ["Tomato", "Cheese", "Basil"],
     price: 12.99,
     rating: 4.5,
-    imageUrl: "",
+    imageUrl: burger,
     tags: ["vegetarian", "bestseller"]
   },
   {

@@ -4,7 +4,7 @@ export const MartContext = createContext({
     MartData:[]});
 
 export const  MartProvider=({children})=> {
-    const MartData=[...burgerRecipes,...saladRecipes,...pizzaRecipes,...drinkRecipes]
+    const MartData=[...pizzaRecipes,...saladRecipes,...burgerRecipes,...drinkRecipes]
     return(
         <MartContext.Provider value={{MartData}}>
             {children}

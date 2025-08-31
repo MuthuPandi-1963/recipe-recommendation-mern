@@ -30,11 +30,14 @@ export default function Samplecards() {
                                 <li key={ingredient.id} >{ingredient.map}</li>
                             })}</CardDescription>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className='flex items-center gap-2 m-2 w-3/4'>
+                            <div className="">
                             <h1 className='gap-2.5'>
                                 {card.tags}</h1>
                           <h6><span>rating :</span>{card.rating}  </h6>  
                             <h1><span>price :</span>{card.price}</h1>
+                            </div>
+                            <img src={card.imageUrl} alt="" className='w-1/2 rounded-3xl' />
                         </CardContent>
                         <CardFooter className='gap-2 grid'>
                             <CardAction>
