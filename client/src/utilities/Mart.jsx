@@ -5,10 +5,10 @@ import { FcLike } from 'react-icons/fc'
 import { useNavigate } from 'react-router-dom';
 import {MartContext} from '../Context/MartContext'
 export default function Mart() {
+    const [cardselect, setCardselect] = useState()
     const  {MartData} =useContext(MartContext)
     console.log(MartData[0]);
       const [like, Setlike] = useState(false)
-    const [cardselect, setCardselect] = useState()
     const navigate = useNavigate();
     const HandleOnclik = () => {
         navigate('recipe:id')
@@ -29,7 +29,7 @@ export default function Mart() {
                             return (
                                 <Card key={card.productId} className='p-4 m-2 relative' >
                                     <CardHeader >
-                                        <CardTitle> {card.name}{}
+                                        <CardTitle> {card.name}
                                         </CardTitle>
                                         <CardDescription className='gap-2'>{card.ingredients.map((ingredient) => {
                                             <li key={ingredient.id} >{ingredient.map}</li>
@@ -37,8 +37,6 @@ export default function Mart() {
                                     </CardHeader>
                                     <CardContent>
                                         <img src={card.imageUrl} alt="photo" />
-                                        <h1 className='gap-2.5'>
-                                            {card.tags}</h1>
                                       <h6><span>rating :</span>{card.rating}  </h6>  
                                         <h1><span>price :</span>{card.price}</h1>
                                     </CardContent>
@@ -48,10 +46,12 @@ export default function Mart() {
                                                 {like && <FcLike size={24} onClick={() => { Setlike(false) }} />}
                                             </div> : <div></div>}
                                         </CardAction>
+                                        <CardAction className='gap-2 grid'>
                                         <Button onClick={HandleOnclik}>view desc</Button>
-                                        <Button className='bg-gray-700 py-0 ' onClick={() => { liking(card.productId) }}>
+                                        <Button className='bg-gray-700 ' onClick={() => { liking(card.productId) }}>
                                             favorite
                                         </Button>
+                                        </CardAction>
                                     </CardFooter>
             
                                 </Card>);

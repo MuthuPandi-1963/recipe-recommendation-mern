@@ -1,3 +1,12 @@
+import image1 from './images/delicious-pizza-slice.jpg'
+import image2 from './images/delicious-pizza-studio.jpg'
+import image3 from './images/delicious-pizza-with-fresh-ingredients.jpg'
+import image4 from './images/pizza.jpeg'
+import salad from './images/salad.avif'
+import salad1 from './images/salad2.jpeg'
+import salad2 from './images/salad-3.jpeg'
+
+
 export default {
   "productId": "string",       // unique ID
   "name": "string",            // e.g., "Veggie Pizza"
@@ -15,7 +24,7 @@ export const pizzaRecipes = [
     ingredients: ["Pepperoni", "Mozzarella", "Tomato Sauce"],
     price: 12.99,
     rating: 4.8,
-  imageUrl: "./images/delicious-pizza-slice.jpg", 
+  imageUrl: image1, 
 
     tags: ["meat", "spicy"]
   },
@@ -26,7 +35,7 @@ export const pizzaRecipes = [
     ingredients: ["Bell Peppers", "Mushrooms", "Olives", "Onions", "Spinach", "Tomato Sauce"],
     price: 14.99,
     rating: 4.7,
-  imageUrl: "./images/delicious-pizza-slice.jpg", 
+  imageUrl: image2, 
 
     tags: ["vegetarian", "healthy"]
   },
@@ -37,7 +46,7 @@ export const pizzaRecipes = [
     ingredients: ["Chicken", "BBQ Sauce", "Red Onions", "Cilantro", "Mozzarella"],
     price: 15.99,
     rating: 4.6,
-  imageUrl: "./images/delicious-pizza-studio.jpg", 
+  imageUrl: image3, 
 
     tags: ["chicken", "smoky"]
   },
@@ -48,7 +57,7 @@ export const pizzaRecipes = [
     ingredients: ["Tomato", "Mozzarella", "Basil"],
     price: 11.99,
     rating: 4.9,
-  imageUrl: "./images/delicious-pizza-with-fresh-ingredients.jpg", 
+  imageUrl: image3, 
 
     tags: ["vegetarian", "classic"]
   },
@@ -59,7 +68,7 @@ export const pizzaRecipes = [
     ingredients: ["Mushrooms", "Truffle Oil", "Mozzarella", "Parmesan"],
     price: 16.99,
     rating: 4.8,
-  imageUrl: "./images/pizza.jpeg", 
+  imageUrl:image4, 
 
     tags: ["luxury", "earthy"]
   }
@@ -72,6 +81,8 @@ export const burgerRecipes = [
     ingredients: ["Beef Patty", "Cheddar", "Lettuce", "Tomato", "Pickles", "Burger Sauce"],
     price: 9.99,
     rating: 4.7,
+  imageUrl: "", 
+
     tags: ["classic", "beef"]
   },
   {
@@ -81,6 +92,8 @@ export const burgerRecipes = [
     ingredients: ["Beef Patty", "Bacon", "BBQ Sauce", "Cheddar", "Lettuce", "Tomato"],
     price: 11.49,
     rating: 4.8,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+
     tags: ["bbq", "bacon"]
   },
   {
@@ -90,6 +103,8 @@ export const burgerRecipes = [
     ingredients: ["Veggie Patty", "Lettuce", "Tomato", "Onions", "Pickles", "Avocado"],
     price: 10.49,
     rating: 4.6,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+
     tags: ["vegetarian", "healthy"]
   },
   {
@@ -99,6 +114,8 @@ export const burgerRecipes = [
     ingredients: ["Beef Patty", "Swiss Cheese", "Mushrooms", "Lettuce", "Tomato"],
     price: 12.49,
     rating: 4.7,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+    
     tags: ["cheese", "mushrooms"]
   },
   {
@@ -108,6 +125,8 @@ export const burgerRecipes = [
     ingredients: ["Beef Patty", "Jalapeños", "Cheddar", "Lettuce", "Tomato", "Spicy Mayo"],
     price: 11.99,
     rating: 4.8,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+
     tags: ["spicy", "jalapeno"]
   }
 ]
@@ -118,6 +137,8 @@ export const saladRecipes = [
     category: ["Salad", "Vegetarian", "Classic"],
     ingredients: ["Romaine Lettuce", "Parmesan", "Croutons", "Caesar Dressing"],
     price: 8.99,
+  imageUrl: salad, 
+
     rating: 4.5,
     tags: ["vegetarian", "classic"]
   },
@@ -127,6 +148,8 @@ export const saladRecipes = [
     category: ["Salad", "Vegetarian", "Fresh"],
     ingredients: ["Cucumber", "Tomato", "Olives", "Feta Cheese", "Red Onion", "Oregano", "Olive Oil"],
     price: 9.99,
+  imageUrl: salad1, 
+
     rating: 4.6,
     tags: ["vegetarian", "fresh"]
   },
@@ -136,6 +159,8 @@ export const saladRecipes = [
     category: ["Salad", "Healthy", "Protein"],
     ingredients: ["Quinoa", "Spinach", "Chickpeas", "Avocado", "Lemon Vinaigrette"],
     price: 10.99,
+  imageUrl: salad2, 
+
     rating: 4.7,
     tags: ["healthy", "protein"]
   },
@@ -146,6 +171,8 @@ export const saladRecipes = [
     ingredients: ["Tomatoes", "Mozzarella", "Basil", "Olive Oil", "Balsamic Glaze"],
     price: 11.49,
     rating: 4.8,
+  imageUrl:salad2, 
+
     tags: ["vegetarian", "fresh"]
   },
   {
@@ -155,6 +182,8 @@ export const saladRecipes = [
     ingredients: ["Grilled Chicken", "Avocado", "Mixed Greens", "Cherry Tomatoes", "Lemon Vinaigrette"],
     price: 12.49,
     rating: 4.9,
+  imageUrl: salad1, 
+
     tags: ["chicken", "healthy"]
   }
 ]
@@ -166,6 +195,8 @@ export const drinkRecipes = [
     ingredients: ["Lemon", "Sugar", "Water", "Ice"],
     price: 3.49,
     rating: 4.7,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+
     tags: ["fresh", "sweet"]
   },
   {
@@ -175,6 +206,8 @@ export const drinkRecipes = [
     ingredients: ["Coffee", "Ice", "Milk", "Sugar"],
     price: 4.49,
     rating: 4.6,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+    
     tags: ["coffee", "chilled"]
   },
   {
@@ -184,6 +217,8 @@ export const drinkRecipes = [
     ingredients: ["Banana", "Strawberries", "Greek Yogurt", "Honey", "Ice"],
     price: 5.99,
     rating: 4.8,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+    
     tags: ["healthy", "smoothie"]
   },
   {
@@ -192,6 +227,8 @@ export const drinkRecipes = [
     category: ["Drink", "Soda", "Classic"],
     ingredients: ["Coca-Cola"],
     price: 2.99,
+  imageUrl: "images/delicious-pizza-slice.jpg", 
+
     rating: 4.5,
     tags: ["soda", "classic"]
   },
@@ -202,6 +239,8 @@ export const drinkRecipes = [
     ingredients: ["Green Tea", "Ice", "Lemon", "Honey"],
     price: 3.99,
     rating: 4.6,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+
     tags: ["green tea", "fresh"]
   }
 ]
