@@ -19,7 +19,7 @@ export default function Samplecards() {
 
     }
     return (
-        <div className=" flex   gap-5 my-4">
+        <div className=" flex s   gap-5 my-4">
             {value.Provider.map((card) => {
                 return (
                     <Card key={card.id} className='p-4 min-w-2xs relative ' >
