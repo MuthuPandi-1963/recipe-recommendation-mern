@@ -5,7 +5,6 @@ export default {
   "ingredients": ["string"],   // e.g., ["Tomato", "Cheese", "Basil"]
   "price": 12.99,              // float
   "rating": 4.5,               // average rating (optional)
-  "imageUrl": "string",        // URL to food image
   "tags": ["string"]           // e.g., ["vegan", "spicy", "quick"]
 }
 export const pizzaRecipes = [
@@ -16,6 +15,8 @@ export const pizzaRecipes = [
     ingredients: ["Pepperoni", "Mozzarella", "Tomato Sauce"],
     price: 12.99,
     rating: 4.8,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+
     tags: ["meat", "spicy"]
   },
   {
@@ -25,6 +26,8 @@ export const pizzaRecipes = [
     ingredients: ["Bell Peppers", "Mushrooms", "Olives", "Onions", "Spinach", "Tomato Sauce"],
     price: 14.99,
     rating: 4.7,
+  imageUrl: "./images/delicious-pizza-slice.jpg", 
+
     tags: ["vegetarian", "healthy"]
   },
   {
@@ -34,6 +37,8 @@ export const pizzaRecipes = [
     ingredients: ["Chicken", "BBQ Sauce", "Red Onions", "Cilantro", "Mozzarella"],
     price: 15.99,
     rating: 4.6,
+  imageUrl: "./images/delicious-pizza-studio.jpg", 
+
     tags: ["chicken", "smoky"]
   },
   {
@@ -43,6 +48,8 @@ export const pizzaRecipes = [
     ingredients: ["Tomato", "Mozzarella", "Basil"],
     price: 11.99,
     rating: 4.9,
+  imageUrl: "./images/delicious-pizza-with-fresh-ingredients.jpg", 
+
     tags: ["vegetarian", "classic"]
   },
   {
@@ -52,6 +59,8 @@ export const pizzaRecipes = [
     ingredients: ["Mushrooms", "Truffle Oil", "Mozzarella", "Parmesan"],
     price: 16.99,
     rating: 4.8,
+  imageUrl: "./images/pizza.jpeg", 
+
     tags: ["luxury", "earthy"]
   }
 ]

@@ -36,6 +36,7 @@ export default function Mart() {
                                         })}</CardDescription>
                                     </CardHeader>
                                     <CardContent>
+                                        <img src={card.imageUrl} alt="photo" />
                                         <h1 className='gap-2.5'>
                                             {card.tags}</h1>
                                       <h6><span>rating :</span>{card.rating}  </h6>  
