@@ -20,24 +20,26 @@ export default function Samplecards() {
     }
     return (
         <div className=" flex s   gap-5 my-4">
-            {value.Provider.map((card) => {
+            {value.Provider.MartData.map((card) => {
                 return (
                     <Card key={card.id} className='p-4 min-w-2xs relative ' >
-                        <CardHeader >
+                        <CardHeader className='font-serif'>
                             <CardTitle> {card.name}
                             </CardTitle>
                             <CardDescription className='gap-2'>{card.ingredients.map((ingredient) => {
                                 <li key={ingredient.id} >{ingredient.map}</li>
                             })}</CardDescription>
                         </CardHeader>
-                        <CardContent className='flex items-center gap-2 m-2 w-3/4'>
-                            <div className="">
-                            <h1 className='gap-2.5'>
-                                {card.tags}</h1>
+                        <CardContent className=' items-center '>
+                            <img src={card.imageUrl} alt="" className='rounded-lg h-3/5 w-3/4' />
+
+                         <CardDescription>
+                               <div className="my-4">
                           <h6><span>rating :</span>{card.rating}  </h6>  
                             <h1><span>price :</span>{card.price}</h1>
+                            <h1 className='gap-2.5'>{card.tags}</h1>
                             </div>
-                            <img src={card.imageUrl} alt="" className='w-1/2 rounded-3xl' />
+                      </CardDescription>
                         </CardContent>
                         <CardFooter className='gap-2 grid'>
                             <CardAction>

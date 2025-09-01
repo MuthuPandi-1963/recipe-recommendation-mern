@@ -3,11 +3,10 @@ import { Button } from '../components/ui/button'
 import { useState, useContext } from 'react';
 import { FcLike } from 'react-icons/fc'
 import { useNavigate } from 'react-router-dom';
-import {MartContext} from '../Context/MartContext'
+import { ProductContext } from '../Context/ProductContext';
 export default function Mart() {
     const [cardselect, setCardselect] = useState()
-    const  {MartData} =useContext(MartContext)
-    console.log(MartData[0]);
+    const  {Provider} =useContext(ProductContext)
       const [like, Setlike] = useState(false)
     const navigate = useNavigate();
     const HandleOnclik = () => {
@@ -25,9 +24,9 @@ export default function Mart() {
             Explore More
             </h1>
             <div className="grid p-4 sm:grid-cols-3 gap-4 w-auto lg:grid-cols-5 ">
-                        {MartData.map((card) => {
+                        {Provider.MartData.map((card) => {
                             return (
-                                <Card key={card.productId} className='p-4 m-2 relative' >
+                                <Card key={card.productId} className=' m-2 relative' >
                                     <CardHeader >
                                         <CardTitle> {card.name}
                                         </CardTitle>
@@ -36,11 +35,14 @@ export default function Mart() {
                                         })}</CardDescription>
                                     </CardHeader>
                                     <CardContent>
-                                        <img src={card.imageUrl} alt="photo" />
+                                        <div className="h-[90%]">
+
+                                        <img src={card.imageUrl} alt="photo" className='bg-background h-full'/>
+                                        </div>
                                       <h6><span>rating :</span>{card.rating}  </h6>  
                                         <h1><span>price :</span>{card.price}</h1>
                                     </CardContent>
-                                    <CardFooter className='gap-2 grid'>
+                                    <CardFooter className='gap-2 my-2 grid'>
                                         <CardAction>
                                             {cardselect===card.productId ? <div className='absolute top-2 right-2 '>
                                                 {like && <FcLike size={24} onClick={() => { Setlike(false) }} />}
