@@ -7,7 +7,7 @@ import { ProductContext } from '../Context/ProductContext';
 export default function Samplecards() {
     const [like, Setlike] = useState(false)
     const [cardselect, setCardselect] = useState()
-    const [addcard,setAddcard]=useState()
+    let addcard=[]
     const navigate = useNavigate();
     const value = useContext(ProductContext)
     const HandleOnclik = (id) => {
@@ -16,12 +16,9 @@ export default function Samplecards() {
     
     const liking = (id) => {
         try{
-            if(id){
-                Setlike(true)
+                        if(id){
                 value.Provider.setfavorites(id)
-                
-            }
-            else{
+                addcard.push(id)
             }
         }
         catch(e){
@@ -29,7 +26,7 @@ export default function Samplecards() {
         }
         
     }
-    console.log(cardselect,like);
+    console.log(cardselect,like,addcard);
     
     return (
         <div className=" flex s   gap-5 my-4">
@@ -56,12 +53,13 @@ export default function Samplecards() {
                         </CardContent>
                         <CardFooter className='gap-2 grid'>
                             <CardAction>
-                                {cardselect === card.productId ? <div className='absolute top-2 right-2 '>
-                                    {like && <FcLike size={24} onClick={() => { Setlike(false) }} />}
-                                </div> : <div></div>}
+                               { addcard.map((list)=>{  <div className='absolute top-2 right-2 ' key={list.id}>
+                                    <FcLike size={24} onClick={() => { Setlike(false) }} />
+                                </div> })}
                             </CardAction>
                             <Button onClick={()=>{HandleOnclik()}}>view desc</Button>
-                            <Button className='bg-gray-700 py-0 ' onClick={() => { liking(card.productId),setCardselect(card.productId)}}>
+               
+                            <Button className='bg-gray-700 py-0 ' onDoubleClick={()=>{Setlike(false)}} onClick={() => { liking(card.productId),setCardselect(card.productId)  ,Setlike(true)}}>
                                 favorite
                             </Button>
                         </CardFooter>

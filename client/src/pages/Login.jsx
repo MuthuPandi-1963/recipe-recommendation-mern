@@ -4,34 +4,86 @@ import { Button } from '@/components/ui/button'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { validatePassword,validateUsername,ConformPassword,ValidatorEmailorPhone,ValidateIsEmail,ValidateIsPhone, } from '../utils/Validator'
 export default function Login() {
     const [signin,setSignin]=useState(false)
-    const handleClick=()=>{
+    const [errors,setErrors]=useState()
+    
+    const [formDatas,setFormDatas]=useState({
+      username:"",password:"",authvalue:"",cpassword:""}
+    )
+   
+    const validateform=()=>{
+      const newmessage={}
+
+      if(validatePassword(password)){
+        newmessage.Password= !validatePassword(password)
+        return newmessage
+      }
+      if(validateUsername(username)){
+        newmessage.name=!validateUsername(username)
+        return newmessage
+      }if(ValidatorEmailorPhone(authvalue)){
+        newmessage.emailpassword=!ValidatorEmailorPhone(authvalue)
+        return newmessage
+      }if(ConformPassword(cpassword,Password)){
+        newmessage.cpassword= !ConformPassword(cpassword,Password)
+        return newmessage
+      }
+    }
+     const HandleChange=(e)=>{
+    setFormData((prev)=>({...prev,[e.target.name]:e.target.value}))
+    setErrors((prev)=>({...prev,[e.target.name]:''}))
+ 
+    }
+      const handleClick=()=>{
         setSignin(prev=>prev?false:true)
     }
+    const HandleSubmit = async(e)=>{
+      e.preventDefault(" ")
+      const validateerrors =validateform();
+      setErrors(validateerrors)
+      if(Object.keys(validateerrors).length>0)return;
+        try{
+          const signupdata={}
+          if(ValidateIsEmail(authvalue)){
+            signupdata.email=authvalue
+          }
+          if(ValidateIsPhone(authvalue)){
+            signupdata.phone=authvalue
+          }
+
+        }
+        catch(err){
+          setErrors(err)
+
+        
+      }
+       
+    }
+    
   return (
     <div className='w-full h-full m-auto'>
-    <form className="grid p-4 mx-10 min-h-full content-center gap-4">  
+    <form className="grid p-4 mx-10 min-h-full content-center gap-4" onSubmit={HandleSubmit}>  
       {signin?  <h1 className='font-bold'>Sign Up Page</h1>:<h1 className='text-center font-bold'>Login Page</h1>}
         <div className="form-inputs">
         <Label>Name</Label>
-        <Input placeholder="enter a name"/>
+        <Input placeholder="enter a name" name="Username" onChange={HandleChange} value={formDatas.username} error={errors?.name}/>
         </div>
 
         <div className="form-inputs">
         <Label>Email or Phone Number</Label>
-        <Input placeholder="enter a email or number"/>
+        <Input placeholder="enter a email or number" name="authvalue" onChange={HandleChange} value={formDatas.authvalue} error={errors?.authvalue}/>
         </div>
 
         <div className="form-inputs">
         <Label>Password</Label>
-        <Input placeholder="enter a password" type="password" size="md"/>
+        <Input placeholder="enter a password" name="password" type="password"  onChange={HandleChange} value={formDatas.password} size="md" error={errors?.password}/>
         </div>{
             signin&&<>
             <div className='form-inputs'>
             <Label>Confirm Password</Label>
-            <Input placeholder="confirm password" type="password" size="md"/>
+            <Input placeholder="confirm password" type="password" size="md" name="cpassword" onChange={HandleChange} value={formDatas.cpassword} error={errors?.cpassword}/>
             </div>
             <div className="flex items-center ">
                 <Input type="checkbox" className='w-5 mx-5'/>
@@ -41,14 +93,15 @@ export default function Login() {
             
         }
        {
-signin?<Button>SignUn</Button>:<Button>Login</Button>}
+signin?<Button >SignUn</Button>:<Button >Login</Button>}
         <div className="">
 
         <div className="">
             <p className='text-center'>or</p>
-            <h2 className='text-nowrap text-center mt-4 font-semibold'>{signin?<h6>Already have an account ? </h6>:<h6>Don't have an account ?</h6>} <span className='text-blue-600 underline font-semibold ' onClick={()=>{handleClick()}}>{signin? <h6>Login Account</h6>:<h6>Create Account</h6>
-                }</span></h2>
+            {signin?<h6>Already have an account ? </h6>:<h6>Don't have an account ?</h6>} <span className='text-blue-600 underline font-semibold ' onClick={()=>{handleClick()}}>{signin? <h6>Login Account</h6>:<h6>Create Account</h6>
+ } </span>
         </div>
+        {errors}
       
         </div>
         

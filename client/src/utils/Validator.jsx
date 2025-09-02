@@ -10,7 +10,7 @@ export  function ValidatorEmailorPhone(value) {
     return null
 };
 
-export function Username(value){
+export function validateUsername(value){
     if(value.string()||null){
     if(!value.trim()){
         return "User name required"
@@ -20,7 +20,7 @@ export function Username(value){
     }}
     return null
 }
-export function Password(password){
+export function validatePassword(password){
 if(!password){
     return "Password is required"}
  if (password.length < 8) {
