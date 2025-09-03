@@ -7,7 +7,7 @@ import { ProductContext } from '../Context/ProductContext';
 export default function Samplecards() {
     const [like, Setlike] = useState(false)
     const [cardselect, setCardselect] = useState()
-    let addcard=[]
+    const [buttons,setButtons]=useState([])
     const navigate = useNavigate();
     const value = useContext(ProductContext)
     const HandleOnclik = (id) => {
@@ -15,19 +15,11 @@ export default function Samplecards() {
     }
     
     const liking = (id) => {
-        try{
-                        if(id){
-                value.Provider.setfavorites(id)
-                addcard.push(id)
-            }
-        }
-        catch(e){
-            alert(e)
-        }
-        
+                setCardselect(id)
+                setButtons((prev)=>prev.includes(id)?prev:[...prev,id])
+                value.Provider.setfavorites(id)       
     }
-    console.log(cardselect,like,addcard);
-    
+    console.log(cardselect,like,buttons);
     return (
         <div className=" flex s   gap-5 my-4">
             {value.Provider.MartData.map((card) => {
@@ -36,9 +28,9 @@ export default function Samplecards() {
                         <CardHeader className='font-serif'>
                             <CardTitle> {card.name}
                             </CardTitle>
-                            <CardDescription className='gap-2'>{card.ingredients.map((ingredient) => {
-                                <li key={ingredient.id} >{ingredient.map}</li>
-                            })}</CardDescription>
+                            <CardDescription className='gap-2'>{card.ingredients.map((ingredient) => (
+                                <li key={ingredient.id} >{ingredient}</li>
+            ))}</CardDescription>
                         </CardHeader>
                         <CardContent className=' items-center '>
                             <img src={card.imageUrl} alt="" className='rounded-lg h-3/5 w-3/4' />
@@ -53,13 +45,13 @@ export default function Samplecards() {
                         </CardContent>
                         <CardFooter className='gap-2 grid'>
                             <CardAction>
-                               { addcard.map((list)=>{  <div className='absolute top-2 right-2 ' key={list.id}>
-                                    <FcLike size={24} onClick={() => { Setlike(false) }} />
-                                </div> })}
+                               {(buttons.filter((para)=>{ <div className='absolute top-2 right-2 '>
+                                   <FcLike size={24}  key={para.id} onClick={() => { Setlike(false) }} />
+                                </div>}))}
                             </CardAction>
-                            <Button onClick={()=>{HandleOnclik()}}>view desc</Button>
+                            <Button onClick={()=>{HandleOnclik(card.productId)}}>view desc</Button>
                
-                            <Button className='bg-gray-700 py-0 ' onDoubleClick={()=>{Setlike(false)}} onClick={() => { liking(card.productId),setCardselect(card.productId)  ,Setlike(true)}}>
+                            <Button className='bg-gray-700 py-0 ' onDoubleClick={()=>{Setlike(false)}} onClick={() => { liking(card.productId),Setlike(prev=>prev?false:true)}}>
                                 favorite
                             </Button>
                         </CardFooter>

@@ -6,24 +6,20 @@ import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../Context/ProductContext';
 export default function Mart() {
     const [cardselects, setCardselects] = useState(0)
-    const { Provider } = useContext(ProductContext)
     const [like, Setlike] = useState(false)
+    const [favorites, setFavorites] = useState()
+    const { Provider } = useContext(ProductContext)
     const navigate = useNavigate();
     const HandleOnclik = (id) => {
         navigate(`recipe:${id}`)
     }
-    console.log();
     const liking = (id) => {
         Setlike(like)
-        try{
-        if(like){
-            setCardselects(prev=>prev=id)
-        }
-    }
-        catch(setCardselects){
-            setCardselects(prev=prev*0)
 
+        if (like) {
+            setFavorites(id)
         }
+        setCardselects(id)
     }
     // console.log(cardselects);
     return (
@@ -52,12 +48,12 @@ export default function Mart() {
                             </CardContent>
                             <CardFooter className='gap-2 my-2 grid'>
                                 <CardAction>
-                                    {cardselects === card.productId ? <div className='absolute top-2 right-2 '>
+                                    {favorites === cardselects ? <div className='absolute top-2 right-2 '>
                                         {like && <FcLike size={24} onClick={() => { Setlike(false) }} />}
                                     </div> : <div></div>}
                                 </CardAction>
                                 <CardAction className='gap-2 grid'>
-                                    <Button onClick={()=>{HandleOnclik(card.productId)}}>view desc</Button>
+                                    <Button onClick={() => { HandleOnclik(card.productId) }}>view desc</Button>
                                     <Button className='bg-gray-700 ' onClick={() => { liking(card.productId) }}>
                                         favorite
                                     </Button>

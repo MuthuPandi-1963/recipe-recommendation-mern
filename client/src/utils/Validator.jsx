@@ -20,26 +20,26 @@ export function validateUsername(value){
     }}
     return null
 }
-export function validatePassword(password){
-if(!password){
+export function validatePassword(value){
+if(!value){
     return "Password is required"}
- if (password.length < 8) {
+ if (value.length < 8) {
     return "Password must be at least 8 characters";
   }
 
-  if (!/[A-Z]/.test(password)) {
+  if (!/[A-Z]/.test(value)) {
     return "Password must contain at least one uppercase letter";
   }
 
-  if (!/[a-z]/.test(password)) {
+  if (!/[a-z]/.test(value)) {
     return "Password must contain at least one lowercase letter";
   }
 
-  if (!/[0-9]/.test(password)) {
+  if (!/[0-9]/.test(value)) {
     return "Password must contain at least one number";
   }
 
-  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+  if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
     return "Password must contain at least one special character";
   }
   return null

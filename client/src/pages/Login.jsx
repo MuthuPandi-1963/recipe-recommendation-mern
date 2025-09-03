@@ -3,7 +3,6 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { validatePassword,validateUsername,ConformPassword,ValidatorEmailorPhone,ValidateIsEmail,ValidateIsPhone, } from '../utils/Validator'
 export default function Login() {
     const [signin,setSignin]=useState(false)
@@ -16,23 +15,23 @@ export default function Login() {
     const validateform=()=>{
       const newmessage={}
 
-      if(validatePassword(password)){
-        newmessage.Password= !validatePassword(password)
+      if(!validatePassword(password)){
+        newmessage.Password= validatePassword(password)
         return newmessage
       }
-      if(validateUsername(username)){
-        newmessage.name=!validateUsername(username)
+      if(!validateUsername(username)){
+        newmessage.name=validateUsername(username)
         return newmessage
-      }if(ValidatorEmailorPhone(authvalue)){
-        newmessage.emailpassword=!ValidatorEmailorPhone(authvalue)
+      }if(!ValidatorEmailorPhone(authvalue)){
+        newmessage.emailpassword=ValidatorEmailorPhone(authvalue)
         return newmessage
-      }if(ConformPassword(cpassword,Password)){
-        newmessage.cpassword= !ConformPassword(cpassword,Password)
+      }if(!ConformPassword(cpassword,password)){
+        newmessage.cpassword= ConformPassword(cpassword,password)
         return newmessage
       }
     }
      const HandleChange=(e)=>{
-    setFormData((prev)=>({...prev,[e.target.name]:e.target.value}))
+    setFormDatas((prev)=>({...prev,[e.target.name]:e.target.value}))
     setErrors((prev)=>({...prev,[e.target.name]:''}))
  
     }
@@ -40,7 +39,7 @@ export default function Login() {
         setSignin(prev=>prev?false:true)
     }
     const HandleSubmit = async(e)=>{
-      e.preventDefault(" ")
+      e.preventDefault()
       const validateerrors =validateform();
       setErrors(validateerrors)
       if(Object.keys(validateerrors).length>0)return;
@@ -55,10 +54,7 @@ export default function Login() {
 
         }
         catch(err){
-          setErrors(err)
-
-        
-      }
+          setErrors(err)}
        
     }
     
@@ -68,7 +64,7 @@ export default function Login() {
       {signin?  <h1 className='font-bold'>Sign Up Page</h1>:<h1 className='text-center font-bold'>Login Page</h1>}
         <div className="form-inputs">
         <Label>Name</Label>
-        <Input placeholder="enter a name" name="Username" onChange={HandleChange} value={formDatas.username} error={errors?.name}/>
+        <Input placeholder="enter a name" name="username" onChange={HandleChange} value={formDatas.username} error={errors?.name}/>
         </div>
 
         <div className="form-inputs">
