@@ -19,7 +19,7 @@ export default function Samplecards() {
                 setButtons((prev)=>prev.includes(id)?prev:[...prev,id])
                 value.Provider.setfavorites(id)       
     }
-    console.log(cardselect,like,buttons);
+    console.log(cardselect,like,buttons,errors);
     return (
         <div className=" flex s   gap-5 my-4">
             {value.Provider.MartData.map((card) => {
@@ -45,9 +45,9 @@ export default function Samplecards() {
                         </CardContent>
                         <CardFooter className='gap-2 grid'>
                             <CardAction>
-                               {(buttons.filter((para)=>{ <div className='absolute top-2 right-2 '>
-                                   <FcLike size={24}  key={para.id} onClick={() => { Setlike(false) }} />
-                                </div>}))}
+                               {(buttons.filter((para)=><div className='absolute top-2 right-2 '>
+                                  {like&& card.productId.match(para)&& <FcLike size={24}  key={para.id} onClick={() => { Setlike(false) }} />}
+                                </div>))}
                             </CardAction>
                             <Button onClick={()=>{HandleOnclik(card.productId)}}>view desc</Button>
                

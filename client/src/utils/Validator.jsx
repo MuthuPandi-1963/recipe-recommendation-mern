@@ -11,7 +11,7 @@ export  function ValidatorEmailorPhone(value) {
 };
 
 export function validateUsername(value){
-    if(value.string()||null){
+    if(value===""||null){
     if(!value.trim()){
         return "User name required"
     }

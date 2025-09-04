@@ -6,15 +6,19 @@ import { useState } from 'react'
 import { validatePassword,validateUsername,ConformPassword,ValidatorEmailorPhone,ValidateIsEmail,ValidateIsPhone, } from '../utils/Validator'
 export default function Login() {
     const [signin,setSignin]=useState(false)
-    const [errors,setErrors]=useState()
-    
-    const [formDatas,setFormDatas]=useState({
-      username:"",password:"",authvalue:"",cpassword:""}
-    )
+    const [errors,setErrors]=useState({})
+      const [formDatas, setFormDatas] = useState({
+    username: "",
+    password: "",
+    authvalue: "",
+    cpassword: ""
+  });
+   
    
     const validateform=()=>{
       const newmessage={}
-
+      
+        const {username,password,authvalue,cpassword}=formDatas
       if(!validatePassword(password)){
         newmessage.Password= validatePassword(password)
         return newmessage
@@ -22,13 +26,17 @@ export default function Login() {
       if(!validateUsername(username)){
         newmessage.name=validateUsername(username)
         return newmessage
+
       }if(!ValidatorEmailorPhone(authvalue)){
         newmessage.emailpassword=ValidatorEmailorPhone(authvalue)
         return newmessage
+
       }if(!ConformPassword(cpassword,password)){
         newmessage.cpassword= ConformPassword(cpassword,password)
         return newmessage
+
       }
+      return setErrors(newmessage)
     }
      const HandleChange=(e)=>{
     setFormDatas((prev)=>({...prev,[e.target.name]:e.target.value}))
@@ -51,12 +59,19 @@ export default function Login() {
           if(ValidateIsPhone(authvalue)){
             signupdata.phone=authvalue
           }
-
+          if (signin) {
+  // Handle sign-up logic
+  console.log("Signup data", signupdata);
+} else {
+  // Handle login logic
+  console.log("Login with", { authvalue, password });
+}
         }
         catch(err){
           setErrors(err)}
        
     }
+    console.log(formDatas,errors,validateform())
     
   return (
     <div className='w-full h-full m-auto'>
@@ -89,7 +104,7 @@ export default function Login() {
             
         }
        {
-signin?<Button >SignUn</Button>:<Button >Login</Button>}
+signin?<Button >SignUp</Button>:<Button >Login</Button>}
         <div className="">
 
         <div className="">
@@ -97,7 +112,8 @@ signin?<Button >SignUn</Button>:<Button >Login</Button>}
             {signin?<h6>Already have an account ? </h6>:<h6>Don't have an account ?</h6>} <span className='text-blue-600 underline font-semibold ' onClick={()=>{handleClick()}}>{signin? <h6>Login Account</h6>:<h6>Create Account</h6>
  } </span>
         </div>
-        {errors}
+        {errors?.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+
       
         </div>
         
