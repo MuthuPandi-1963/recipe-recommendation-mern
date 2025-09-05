@@ -2,11 +2,11 @@ import {Input} from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { validatePassword,validateUsername,ConformPassword,ValidatorEmailorPhone,ValidateIsEmail,ValidateIsPhone, } from '../utils/Validator'
 export default function Login() {
     const [signin,setSignin]=useState(false)
-    const [errors,setErrors]=useState({})
+    const [errors,setErrors]=useState([])
       const [formDatas, setFormDatas] = useState({
     username: "",
     password: "",
@@ -16,62 +16,60 @@ export default function Login() {
    
    
     const validateform=()=>{
-      const newmessage={}
-      
+      const newmessage=[]
+      setErrors(newmessage)
         const {username,password,authvalue,cpassword}=formDatas
-      if(!validatePassword(password)){
+      if(validatePassword(password)){
         newmessage.Password= validatePassword(password)
         return newmessage
+        
+
       }
-      if(!validateUsername(username)){
-        newmessage.name=validateUsername(username)
+      if(validateUsername(username)){
+        newmessage.Username=validateUsername(username)
         return newmessage
 
-      }if(!ValidatorEmailorPhone(authvalue)){
+
+      }if(ValidatorEmailorPhone(authvalue)){
         newmessage.emailpassword=ValidatorEmailorPhone(authvalue)
         return newmessage
 
-      }if(!ConformPassword(cpassword,password)){
+
+      }{if(signin){if(ConformPassword(password,cpassword)){
         newmessage.cpassword= ConformPassword(cpassword,password)
         return newmessage
 
-      }
+      }}}
       return setErrors(newmessage)
     }
-     const HandleChange=(e)=>{
-    setFormDatas((prev)=>({...prev,[e.target.name]:e.target.value}))
-    setErrors((prev)=>({...prev,[e.target.name]:''}))
- 
-    }
+  
+      const HandleChange=(e)=>{
+      setFormDatas((prev)=>({...prev,[e.target.name]:e.target.value}))
+      setErrors((prev)=>({...prev,[e.target.name]:''}))
+        
+      }
       const handleClick=()=>{
         setSignin(prev=>prev?false:true)
     }
-    const HandleSubmit = async(e)=>{
+    const HandleSubmit =(e)=>{
       e.preventDefault()
       const validateerrors =validateform();
       setErrors(validateerrors)
       if(Object.keys(validateerrors).length>0)return;
         try{
-          const signupdata={}
-          if(ValidateIsEmail(authvalue)){
-            signupdata.email=authvalue
+          const data={}
+          if(ValidateIsEmail(formDatas.authvalue)){
+            data.email=formDatas.authvalue
           }
-          if(ValidateIsPhone(authvalue)){
-            signupdata.phone=authvalue
+          if(ValidateIsPhone(formDatas.authvalue)){
+            data.phone=formDatas.authvalue
           }
-          if (signin) {
-  // Handle sign-up logic
-  console.log("Signup data", signupdata);
-} else {
-  // Handle login logic
-  console.log("Login with", { authvalue, password });
-}
         }
         catch(err){
           setErrors(err)}
        
     }
-    console.log(formDatas,errors,validateform())
+    console.log(formDatas,errors)
     
   return (
     <div className='w-full h-full m-auto'>
@@ -106,16 +104,14 @@ export default function Login() {
        {
 signin?<Button >SignUp</Button>:<Button >Login</Button>}
         <div className="">
-
         <div className="">
             <p className='text-center'>or</p>
             {signin?<h6>Already have an account ? </h6>:<h6>Don't have an account ?</h6>} <span className='text-blue-600 underline font-semibold ' onClick={()=>{handleClick()}}>{signin? <h6>Login Account</h6>:<h6>Create Account</h6>
  } </span>
         </div>
-        {errors?.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+          {errors.name}
 
-      
-        </div>
+              </div>
         
 
      {!signin && <div className="grid  justify-center gap-4 items-center">

@@ -14,12 +14,15 @@ export default function Samplecards() {
         navigate(`recipe:${id}`)
     }
     
-    const liking = (id) => {
-                setCardselect(id)
-                setButtons((prev)=>prev.includes(id)?prev:[...prev,id])
-                value.Provider.setfavorites(id)       
+    const liking = (id,value) => {
+        setCardselect(id)
+        if(value.includes(id)&& like){
+            setButtons((prev)=>prev.includes(id)?prev:[...prev,id]) 
+            value.Provider.setfavorites(id)       
+        }
+                Setlike(prev=>prev?false:true)
     }
-    console.log(cardselect,like,buttons,errors);
+    console.log(cardselect,like,buttons);
     return (
         <div className=" flex s   gap-5 my-4">
             {value.Provider.MartData.map((card) => {
@@ -45,13 +48,13 @@ export default function Samplecards() {
                         </CardContent>
                         <CardFooter className='gap-2 grid'>
                             <CardAction>
-                               {(buttons.filter((para)=><div className='absolute top-2 right-2 '>
-                                  {like&& card.productId.match(para)&& <FcLike size={24}  key={para.id} onClick={() => { Setlike(false) }} />}
+                               {(buttons.every((para)=><div className='absolute top-2 right-2 ' key={para}>
+                                  {like &&<FcLike size={24}  key={para.id} onClick={() => { Setlike(false) }} />}
                                 </div>))}
                             </CardAction>
                             <Button onClick={()=>{HandleOnclik(card.productId)}}>view desc</Button>
                
-                            <Button className='bg-gray-700 py-0 ' onDoubleClick={()=>{Setlike(false)}} onClick={() => { liking(card.productId),Setlike(prev=>prev?false:true)}}>
+                            <Button className='bg-gray-700 py-0 ' onDoubleClick={()=>{Setlike(false)}} onClick={() => { liking(card.productId),card.productId}}>
                                 favorite
                             </Button>
                         </CardFooter>
