@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { validatePassword,validateUsername,ConformPassword,ValidatorEmailorPhone,ValidateIsEmail,ValidateIsPhone, } from '../utils/Validator'
 export default function Login() {
     const [signin,setSignin]=useState(false)
-    const [errors,setErrors]=useState([])
+    const [errors,setErrors]=useState({})
       const [formDatas, setFormDatas] = useState({
     username: "",
     password: "",
@@ -16,31 +16,28 @@ export default function Login() {
    
    
     const validateform=()=>{
-      const newmessage=[]
+      const newmessage={}
       setErrors(newmessage)
         const {username,password,authvalue,cpassword}=formDatas
       if(validatePassword(password)){
         newmessage.Password= validatePassword(password)
         return newmessage
-        
-
-      }
+            }
       if(validateUsername(username)){
         newmessage.Username=validateUsername(username)
         return newmessage
-
-
       }if(ValidatorEmailorPhone(authvalue)){
         newmessage.emailpassword=ValidatorEmailorPhone(authvalue)
         return newmessage
 
 
-      }{if(signin){if(ConformPassword(password,cpassword)){
+      }if(ConformPassword(password,cpassword)){
         newmessage.cpassword= ConformPassword(cpassword,password)
         return newmessage
 
-      }}}
+      }
       return setErrors(newmessage)
+      
     }
   
       const HandleChange=(e)=>{
@@ -69,7 +66,7 @@ export default function Login() {
           setErrors(err)}
        
     }
-    console.log(formDatas,errors)
+    console.log(formDatas,errors,)
     
   return (
     <div className='w-full h-full m-auto'>
@@ -109,8 +106,8 @@ signin?<Button >SignUp</Button>:<Button >Login</Button>}
             {signin?<h6>Already have an account ? </h6>:<h6>Don't have an account ?</h6>} <span className='text-blue-600 underline font-semibold ' onClick={()=>{handleClick()}}>{signin? <h6>Login Account</h6>:<h6>Create Account</h6>
  } </span>
         </div>
-          {errors.name}
-
+         <p className='text-red-600 '>
+          { errors.Password}</p>
               </div>
         
 
