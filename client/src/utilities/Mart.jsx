@@ -1,27 +1,24 @@
 import { CardHeader, Card, CardAction, CardContent, CardFooter, CardDescription, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { useState, useContext } from 'react';
+import { AiOutlineHeart } from 'react-icons/ai';
+
 import { FcLike } from 'react-icons/fc'
 import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../Context/ProductContext';
 export default function Mart() {
-    const [cardselects, setCardselects] = useState(0)
-    const [like, Setlike] = useState(false)
-    const [favorites, setFavorites] = useState()
+    const [cardselects, setCardselects] = useState()
+    const [liked, Setliked] = useState([])
     const { Provider } = useContext(ProductContext)
     const navigate = useNavigate();
     const HandleOnclik = (id) => {
         navigate(`recipe:${id}`)
     }
     const liking = (id) => {
-        Setlike(like)
-
-        if (like) {
-            setFavorites(id)
-        }
+        Setliked((prev)=>prev.includes(id)?prev.filter((pid)=>(pid !==id)):[...prev,id])
         setCardselects(id)
+        Provider.setfavorites(liked)
     }
-    // console.log(cardselects);
     return (
         <div>
             <h1 className="font-bold text-3xl py-4">
@@ -48,9 +45,18 @@ export default function Mart() {
                             </CardContent>
                             <CardFooter className='gap-2 my-2 grid'>
                                 <CardAction>
-                                    {favorites === cardselects ? <div className='absolute top-2 right-2 '>
-                                        {like && <FcLike size={24} onClick={() => { Setlike(false) }} />}
-                                    </div> : <div></div>}
+                                      <div className='absolute top-2 right-2 '>
+
+                                      {liked.includes(card.productId)? (<FcLike size={24} onClick={() => { liking(card.productId) }} />) : (
+                                          <AiOutlineHeart
+                                          size={24}
+                                          onClick={() => liking(card.productId)}
+                                          className="cursor-pointer"
+                                          />
+                                        )}
+                                        </div>
+                                                                        
+                                
                                 </CardAction>
                                 <CardAction className='gap-2 grid'>
                                     <Button onClick={() => { HandleOnclik(card.productId) }}>view desc</Button>

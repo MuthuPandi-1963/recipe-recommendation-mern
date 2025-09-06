@@ -51,7 +51,7 @@ export default function Samplecards() {
                                     {liked.includes(card.productId)? (<FcLike size={24} onClick={() => { liking(card.productId) }} />) : (
                                         <AiOutlineHeart
                                             size={24}
-                                            onClick={() => toggleLike(card.productId)}
+                                            onClick={() => liking(card.productId)}
                                             className="cursor-pointer"
                                         />
                                     )}
