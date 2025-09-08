@@ -2,7 +2,7 @@ import {Input} from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
-import { useEffect, useState } from 'react'
+import { Children, useEffect, useState } from 'react'
 import { validatePassword,validateUsername,ConformPassword,ValidatorEmailorPhone,ValidateIsEmail,ValidateIsPhone, } from '../utils/Validator'
 export default function Login() {
     const [signin,setSignin]=useState(false)
@@ -31,11 +31,12 @@ export default function Login() {
         return newmessage
 
 
-      }if(ConformPassword(password,cpassword)){
+      }
+      {if(signin ){ if(ConformPassword(password,cpassword)){
         newmessage.cpassword= ConformPassword(cpassword,password)
         return newmessage
 
-      }
+      }}}
       return setErrors(newmessage)
       
     }
@@ -66,7 +67,7 @@ export default function Login() {
           setErrors(err)}
        
     }
-    console.log(formDatas,errors,)
+    console.log(errors,formDatas,formDatas.cpasswordsssd);
     
   return (
     <div className='w-full h-full m-auto'>
@@ -74,7 +75,7 @@ export default function Login() {
       {signin?  <h1 className='font-bold'>Sign Up Page</h1>:<h1 className='text-center font-bold'>Login Page</h1>}
         <div className="form-inputs">
         <Label>Name</Label>
-        <Input placeholder="enter a name" name="username" onChange={HandleChange} value={formDatas.username} error={errors?.name}/>
+        <Input placeholder="enter a name" name="username" onChange={HandleChange} value={formDatas.username} error={errors?.username}/>
         </div>
 
         <div className="form-inputs">
@@ -106,8 +107,11 @@ signin?<Button >SignUp</Button>:<Button >Login</Button>}
             {signin?<h6>Already have an account ? </h6>:<h6>Don't have an account ?</h6>} <span className='text-blue-600 underline font-semibold ' onClick={()=>{handleClick()}}>{signin? <h6>Login Account</h6>:<h6>Create Account</h6>
  } </span>
         </div>
-         <p className='text-red-600 '>
-          { errors.Password}</p>
+         <div className='text-red-600 '>
+          {Object.values(errors).map((err, i) => (
+          <p key={i} className="text-red-600">{err}</p>
+))}
+</div>
               </div>
         
 

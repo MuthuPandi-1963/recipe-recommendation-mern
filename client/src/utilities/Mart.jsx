@@ -18,7 +18,9 @@ export default function Mart() {
         Setliked((prev)=>prev.includes(id)?prev.filter((pid)=>(pid !==id)):[...prev,id])
         setCardselects(id)
         Provider.setfavorites(liked)
+        console.log(Provider.favorites);
     }
+    
     return (
         <div>
             <h1 className="font-bold text-3xl py-4">

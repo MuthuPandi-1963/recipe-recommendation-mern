@@ -21,7 +21,6 @@ export default function Samplecards() {
         setCardselect(id)
     }
 
-    console.log(cardselect, liked);
     return (
         <div className=" flex gap-5 my-4">
             {value.Provider.MartData.map((card) => {

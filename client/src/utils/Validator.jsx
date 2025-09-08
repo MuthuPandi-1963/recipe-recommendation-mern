@@ -1,29 +1,29 @@
 export  function ValidatorEmailorPhone(value) {
-    if(!value.trim()){
+    if(!value){
         return 'email or phone is required'
     }
     const emailregex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneregex=/^\+?\d{10,15}$/;
-    if(!emailregex.test(value) && !phoneregex.test(value)){
+    if(!emailregex.test(value.trim()) && !phoneregex.test(value.trim())){
         return "enter a valid mobile or email"
     }
     return null
 };
 
 export function validateUsername(value){
-    if(value===""||null){
-    if(!value.trim()){
+ 
+    if(!value){
         return "User name required"
     }
     if(value.trim().lenght<2 ){
-        return "Enter Full name must be least 3"
-    }}
+        return "Enter name must be least 3"
+    }
     return null
 }
 export function validatePassword(value){
 if(!value){
     return "Password is required"}
- if (value.length < 8) {
+ if (value.length<8) {
     return "Password must be at least 8 characters";
   }
 
@@ -45,7 +45,7 @@ if(!value){
   return null
 }
 export function ConformPassword(password,ConformPassword){
-if(!ConformPassword){
+if(!ConformPassword||null||undefined){
         return "confirm password is required"
     }
     if(password!==ConformPassword){
