@@ -11,7 +11,8 @@ export default function Login() {
     username: "",
     password: "",
     authvalue: "",
-    cpassword: ""
+    cpassword: "",
+    
   });
    
    
@@ -19,28 +20,29 @@ export default function Login() {
       const newmessage={}
       setErrors(newmessage)
         const {username,password,authvalue,cpassword}=formDatas
-      if(validatePassword(password)){
-        newmessage.Password= validatePassword(password)
+        if(validateUsername(username)){
+          newmessage.Username=validateUsername(username)
+          return newmessage
+        }
+        if(ValidatorEmailorPhone(authvalue)){
+            newmessage.emailpassword=ValidatorEmailorPhone(authvalue)
+            return newmessage
+          }
+        if(validatePassword(password)){
+          newmessage.Password= validatePassword(password)
+          return newmessage
+              }
+      {if(signin ){ if(ConformPassword(password,cpassword)){
+        newmessage.cpassword= ConformPassword(password,cpassword)
         return newmessage
-            }
-      if(validateUsername(username)){
-        newmessage.Username=validateUsername(username)
-        return newmessage
-      }if(ValidatorEmailorPhone(authvalue)){
-        newmessage.emailpassword=ValidatorEmailorPhone(authvalue)
-        return newmessage
-
 
       }
-      {if(signin ){ if(ConformPassword(password,cpassword)){
-        newmessage.cpassword= ConformPassword(cpassword,password)
-        return newmessage
 
-      }}}
-      return setErrors(newmessage)
+    }
       
     }
-  
+      return setErrors(newmessage)    
+    }
       const HandleChange=(e)=>{
       setFormDatas((prev)=>({...prev,[e.target.name]:e.target.value}))
       setErrors((prev)=>({...prev,[e.target.name]:''}))
@@ -64,43 +66,43 @@ export default function Login() {
           }
         }
         catch(err){
-          setErrors(err)}
-       
+          setErrors(err)} 
     }
-    console.log(errors,formDatas,formDatas.cpasswordsssd);
     
   return (
     <div className='w-full h-full m-auto'>
+      <div className="">
+
     <form className="grid p-4 mx-10 min-h-full content-center gap-4" onSubmit={HandleSubmit}>  
       {signin?  <h1 className='font-bold'>Sign Up Page</h1>:<h1 className='text-center font-bold'>Login Page</h1>}
         <div className="form-inputs">
         <Label>Name</Label>
-        <Input placeholder="enter a name" name="username" onChange={HandleChange} value={formDatas.username} error={errors?.username}/>
+        <Input placeholder="enter a name" name="username" onChange={HandleChange} value={formDatas.username} />
         </div>
 
         <div className="form-inputs">
         <Label>Email or Phone Number</Label>
-        <Input placeholder="enter a email or number" name="authvalue" onChange={HandleChange} value={formDatas.authvalue} error={errors?.authvalue}/>
+        <Input placeholder="enter a email or number" name="authvalue" onChange={HandleChange} value={formDatas.authvalue} />
         </div>
 
         <div className="form-inputs">
         <Label>Password</Label>
-        <Input placeholder="enter a password" name="password" type="password"  onChange={HandleChange} value={formDatas.password} size="md" error={errors?.password}/>
+        <Input placeholder="enter a password" name="password" type="password"  onChange={HandleChange} value={formDatas.password} size="md" />
         </div>{
-            signin&&<>
+          signin&&<>
             <div className='form-inputs'>
             <Label>Confirm Password</Label>
-            <Input placeholder="confirm password" type="password" size="md" name="cpassword" onChange={HandleChange} value={formDatas.cpassword} error={errors?.cpassword}/>
+            <Input placeholder="confirm password" type="password" size="md" name="cpassword" onChange={HandleChange} value={formDatas.cpassword} />
             </div>
             <div className="flex items-center ">
-                <Input type="checkbox" className='w-5 mx-5'/>
+                <Input type="checkbox" className='w-5 mx-5 ' name="terms" onChange={HandleChange}/>
               <p className='flex-nowrap w-full'>  I agree with terms and condition</p>
             </div>
         </>
             
-        }
+          }
        {
-signin?<Button >SignUp</Button>:<Button >Login</Button>}
+         signin?<Button onClick={()=>{<Link to="/profile"/>}}>SignUp</Button>:<Button >Login</Button>}
         <div className="">
         <div className="">
             <p className='text-center'>or</p>
@@ -109,12 +111,13 @@ signin?<Button >SignUp</Button>:<Button >Login</Button>}
         </div>
          <div className='text-red-600 '>
           {Object.values(errors).map((err, i) => (
-          <p key={i} className="text-red-600">{err}</p>
-))}
+            <p key={i} className="text-red-600">{err}</p>
+          ))}
 </div>
               </div>
         
 
+    </form>
      {!signin && <div className="grid  justify-center gap-4 items-center">
             <p className='mt-4 text-center font-semibold '>Continue With</p>
             <div className="flex gap-x-4">
@@ -127,7 +130,7 @@ signin?<Button >SignUp</Button>:<Button >Login</Button>}
             </Button>
             </div>
         </div>}
-    </form>
+          </div>
     </div>
   )
 }

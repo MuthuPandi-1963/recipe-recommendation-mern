@@ -1,3 +1,5 @@
+import { ProductContext } from '../Context/ProductContext';
+
 export  function ValidatorEmailorPhone(value) {
     if(!value){
         return 'email or phone is required'
@@ -45,7 +47,7 @@ if(!value){
   return null
 }
 export function ConformPassword(password,ConformPassword){
-if(!ConformPassword||null||undefined){
+if(!(ConformPassword)){
         return "confirm password is required"
     }
     if(password!==ConformPassword){
@@ -53,6 +55,11 @@ if(!ConformPassword||null||undefined){
     }
     return null
 
+}
+export function termsValidation(data){
+  if(data===false){
+    return "please accept terms & condition"
+  }
 }
 export function ValidateIsPhone(data) {
   const phoneRegex = /^\+?\d{10,15}$/;
@@ -62,4 +69,14 @@ export function ValidateIsPhone(data) {
 export function ValidateIsEmail(data) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(data);
+}
+export function valudatefavoriee(data){
+      const { Provider } = useContext(ProductContext)
+  const favoritesid=(data)
+  if(favoritesid===Provider.Martdata.id){
+    return Provider.Martdata.map(()=>{
+
+    })
+  }
+
 }

@@ -1,6 +1,8 @@
 import Samplecards from '../utilities/Samplecard'
 import Mart from '../utilities/Mart'
-export default function Cards() {
+export default function Cards(value) {
+    console.log();
+    
     return (
         <div className=''>
             <div className="hidden md:block lg:block">
@@ -10,7 +12,7 @@ export default function Cards() {
                 </div>
             </div>
             <div className="">
-            <Mart />
+            <Mart/>
             </div>
         </div>
     )

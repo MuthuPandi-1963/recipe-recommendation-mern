@@ -9,7 +9,7 @@ import { ProductContext } from '../Context/ProductContext';
 export default function Mart() {
     const [cardselects, setCardselects] = useState()
     const [liked, Setliked] = useState([])
-    const { Provider } = useContext(ProductContext)
+    const { Provider} = useContext(ProductContext)
     const navigate = useNavigate();
     const HandleOnclik = (id) => {
         navigate(`recipe:${id}`)
@@ -17,13 +17,14 @@ export default function Mart() {
     const liking = (id) => {
         Setliked((prev)=>prev.includes(id)?prev.filter((pid)=>(pid !==id)):[...prev,id])
         setCardselects(id)
-        Provider.setfavorites(liked)
-        console.log(Provider.favorites);
+      const {setfavorites}=  Provider
+      setfavorites((prev)=>prev.includes(id)?prev.filter((pid)=>(pid !==id)):[...prev,id])
+
     }
     
     return (
         <div>
-            <h1 className="font-bold text-3xl py-4">
+        <h1 className="font-bold text-3xl py-4">
                 Explore More
             </h1>
             <div className="grid p-4 sm:grid-cols-3 gap-4 w-auto lg:grid-cols-5 ">
@@ -40,7 +41,7 @@ export default function Mart() {
                             <CardContent>
                                 <div className="h-[90%]">
 
-                                    <img src={card.imageUrl} alt="photo" className='bg-background h-full rounded' />
+                                    <img src={card.imageUrl} alt="photo" className='bg-background h-70 rounded overflow-hidden' />
                                 </div>
                                 <h6><span>rating :</span>{card.rating}  </h6>
                                 <h1><span>price :</span>{card.price}</h1>

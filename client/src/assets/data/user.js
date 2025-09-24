@@ -1,6 +1,6 @@
-export default{
+export const user={
     success:true,
-    message:"user daata fetched successfully",
+    message:"user data fetched successfully",
     data:{
         id:"0001",
         email:"abc@gmail.com",
