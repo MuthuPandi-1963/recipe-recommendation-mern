@@ -34,15 +34,20 @@ export default function Mart() {
                                 <CardTitle> {card.name}
                                 </CardTitle>
                                 <CardDescription className='gap-2'>{card.ingredients.map((ing) => {
-                                    <p>{ing}</p>
+                                    <li key={ing.id}>{ing}</li>
                                 })}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <div className="h-[90%]">   
                                     <img src={card.image} alt="photo" className='bg-background h-70 rounded overflow-hidden' />
                                 </div>
+                                <CardDescription>
+
                                 <h6><span>rating :</span>{card.rating}  </h6>
-                                <h1><span>price :</span>{card.price}</h1>
+                                <h1><span>defficulty:</span>{card.difficulty}</h1>
+                                <h1><span>meal types:</span>{card.mealType}</h1>
+                                </CardDescription>
+
                             </CardContent>
                             <CardFooter className='gap-2 my-2 grid'>
                                 <CardAction>

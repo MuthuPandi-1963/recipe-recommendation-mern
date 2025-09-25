@@ -6,8 +6,7 @@ export const   ProductProvider=({children})=> {
         const [recipes,setRecipes]=useState([])
     const [favorites,setfavorites]=useState([]) 
     const [caches,setCaches]=useState([]) 
-        const MartData=[...pizzaRecipes,...saladRecipes,...burgerRecipes,...drinkRecipes]
-    const Provider={MartData,favorites,setCaches,setfavorites,caches};
+    const Provider={caches};
  useEffect(() => {
     const fetchRecipes = async () => {
       try {
