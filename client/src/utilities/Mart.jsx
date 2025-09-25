@@ -2,14 +2,13 @@ import { CardHeader, Card, CardAction, CardContent, CardFooter, CardDescription,
 import { Button } from '../components/ui/button'
 import { useState, useContext } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
-
 import { FcLike } from 'react-icons/fc'
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../Context/ProductContext';
 export default function Mart() {
     const [cardselects, setCardselects] = useState()
     const [liked, Setliked] = useState([])
-    const { Provider} = useContext(ProductContext)
+    const { recipes} = useContext(ProductContext)
     const navigate = useNavigate();
     const HandleOnclik = (id) => {
         navigate(`recipe:${id}`)
@@ -21,27 +20,26 @@ export default function Mart() {
       setfavorites((prev)=>prev.includes(id)?prev.filter((pid)=>(pid !==id)):[...prev,id])
 
     }
-    
+ 
     return (
         <div>
         <h1 className="font-bold text-3xl py-4">
                 Explore More
             </h1>
             <div className="grid p-4 sm:grid-cols-3 gap-4 w-auto lg:grid-cols-5 ">
-                {Provider.MartData.map((card) => {
+                {recipes.map((card) => {
                     return (
-                        <Card key={card.productId} className=' m-2 relative' >
+                        <Card key={card.id} className=' m-2 relative' >
                             <CardHeader >
                                 <CardTitle> {card.name}
                                 </CardTitle>
-                                <CardDescription className='gap-2'>{card.ingredients.map((ingredient) => {
-                                    <li key={ingredient.id} >{ingredient.map}</li>
+                                <CardDescription className='gap-2'>{card.ingredients.map((ing) => {
+                                    <p>{ing}</p>
                                 })}</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <div className="h-[90%]">
-
-                                    <img src={card.imageUrl} alt="photo" className='bg-background h-70 rounded overflow-hidden' />
+                                <div className="h-[90%]">   
+                                    <img src={card.image} alt="photo" className='bg-background h-70 rounded overflow-hidden' />
                                 </div>
                                 <h6><span>rating :</span>{card.rating}  </h6>
                                 <h1><span>price :</span>{card.price}</h1>
@@ -50,10 +48,10 @@ export default function Mart() {
                                 <CardAction>
                                       <div className='absolute top-2 right-2 '>
 
-                                      {liked.includes(card.productId)? (<FcLike size={24} onClick={() => { liking(card.productId) }} />) : (
+                                      {liked.includes(card.id)? (<FcLike size={24} onClick={() => { liking(card.id) }} />) : (
                                           <AiOutlineHeart
                                           size={24}
-                                          onClick={() => liking(card.productId)}
+                                          onClick={() => liking(card.id)}
                                           className="cursor-pointer"
                                           />
                                         )}
@@ -62,8 +60,8 @@ export default function Mart() {
                                 
                                 </CardAction>
                                 <CardAction className='gap-2 grid'>
-                                    <Button onClick={() => { HandleOnclik(card.productId) }}>view desc</Button>
-                                    <Button className='bg-gray-700 ' onClick={() => { liking(card.productId) }}>
+                                    <Button onClick={() => { HandleOnclik(card.id) }}>view desc</Button>
+                                    <Button className='bg-gray-700 ' onClick={() => { liking(card.id) }}>
                                         favorite
                                     </Button>
                                 </CardAction>

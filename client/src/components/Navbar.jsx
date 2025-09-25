@@ -2,6 +2,7 @@
   import React, { useState } from 'react'
   import { Link } from 'react-router-dom'
   import {Button} from '@/components/ui/button'
+  import {Input} from '@/components/ui/input'
   export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -31,9 +32,10 @@
                 <Link to="/profile" className="flex items-center text-gray-700 hover:text-green-600">
                   <User className="h-4 w-4 mr-1" /> Profile
                 </Link>
-                <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                  <Search className="h-4 w-4 mr-1" /> Search
-                </Button>
+                <Link  className=" text-white  border-r-0 flex content-center">
+                <Input className="border-none  bg-gray-700 rounded-r-none " />
+                  <Search className="justify-center  rounded-br-sm rounded-tr-sm h-auto pr-2 bg-gray-700"  size={23}/> 
+                </Link>
               </div>
 
               {/* Mobile Menu Button */}
@@ -60,9 +62,10 @@
                 <Link to="/profile" className=" flex items-center text-gray-700 hover:text-green-600">
                   <User className="h-4 w-4 mr-1" /> Profile
                 </Link>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-                  <Search className="h-4 w-4 mr-1" /> Search
-                </Button>
+               <Link  className=" text-white  border-r-0 flex content-center">
+                <Input className="border-none  bg-gray-700 rounded-r-none " />
+                  <Search className="justify-center  rounded-br-sm rounded-tr-sm h-auto pr-2 bg-gray-700"  size={23}/> 
+                </Link>
               </div>
             </div>
           )}

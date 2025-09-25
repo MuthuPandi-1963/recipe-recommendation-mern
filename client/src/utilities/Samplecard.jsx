@@ -10,7 +10,7 @@ export default function Samplecards() {
     const [cardselect, setCardselect] = useState()
     const [buttons, setButtons] = useState([])
     const navigate = useNavigate();
-    const value = useContext(ProductContext)
+    const {Provider} = useContext(ProductContext)
     const HandleOnclik = (id) => {
         navigate(`/recipe:/${id}`)
     }
@@ -23,42 +23,42 @@ export default function Samplecards() {
 
     return (
         <div className=" flex gap-5 my-4">
-            {value.Provider.MartData.map((card) => {
+            {Provider.caches.map((card) => {
                 return (
                     <Card key={card.id} className='p-4 min-w-2xs relative ' >
                         <CardHeader className='font-serif'>
                             <CardTitle> {card.name}
                             </CardTitle>
-                            <CardDescription className='gap-2'>{card.ingredients.map((ingredient) => (
+                            {/* <CardDescription className='gap-2'>{card.ingredients.map((ingredient) => (
                                 <li key={ingredient.id} >{ingredient}</li>
-                            ))}</CardDescription>
+                            ))}</CardDescription> */}
                         </CardHeader>
                         <CardContent className=' items-center '>
-                            <img src={card.imageUrl} alt="" className='rounded-lg h-3/5 w-3/4' />
+                            <img src={card.image} alt="" className='rounded-lg' />
 
                             <CardDescription>
-                                <div className="my-4">
+                                {/* <div className="my-4">
                                     <h6><span>rating :</span>{card.rating}  </h6>
                                     <h1><span>price :</span>{card.price}</h1>
                                     <h1 className='gap-2.5'>{card.tags}</h1>
-                                </div>
+                                </div> */}
                             </CardDescription>
                         </CardContent>
                         <CardFooter className='gap-2 grid'>
                             <CardAction>
                                 <div className='absolute top-2 right-2 '>
-                                    {liked.includes(card.productId)? (<FcLike size={24} onClick={() => { liking(card.productId) }} />) : (
+                                    {liked.includes(card.id)? (<FcLike size={24} onClick={() => { liking(card.id) }} />) : (
                                         <AiOutlineHeart
                                             size={24}
-                                            onClick={() => liking(card.productId)}
+                                            onClick={() => liking(card.id)}
                                             className="cursor-pointer"
                                         />
                                     )}
                                 </div>
                             </CardAction>
-                            <Button onClick={() => { HandleOnclik(card.productId) }}>view desc</Button>
+                            <Button onClick={() => { HandleOnclik(card.id) }}>view desc</Button>
 
-                            <Button className='bg-gray-700 py-0 ' onClick={() => { liking(card.productId) }}>
+                            <Button className='bg-gray-700 py-0 ' onClick={() => { liking(card.id) }}>
                                 favorite
                             </Button>
                         </CardFooter>
