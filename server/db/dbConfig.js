@@ -5,7 +5,7 @@ import { pinoLogger } from '../utils/pinoLogger.js';
 
 export const dbConfig = async ()=>{
     try {
-        const res = await mongoose.connect(envLoader("MONGODB_URI"));
+        const res = await mongoose.connect(envLoader("MONGODB_URI")/recipemania);
         pinoLogger.info(`Database connected Successfully : ${res.connection.host}`)
         
     } catch (error) {

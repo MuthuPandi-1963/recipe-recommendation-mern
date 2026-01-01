@@ -8,25 +8,24 @@ import { ProductContext } from '../Context/ProductContext';
 export default function Mart() {
     const [cardselects, setCardselects] = useState()
     const [liked, Setliked] = useState([])
-    const { recipes} = useContext(ProductContext)
+    const { recipes,isfavorites,searchResults} = useContext(ProductContext)
     const navigate = useNavigate();
     const HandleOnclik = (id) => {
-        navigate(`recipe:${id}`)
+        navigate('/recipes/'+id)
     }
     const liking = (id) => {
         Setliked((prev)=>prev.includes(id)?prev.filter((pid)=>(pid !==id)):[...prev,id])
         setCardselects(id)
       const {setfavorites}=  Provider
       setfavorites((prev)=>prev.includes(id)?prev.filter((pid)=>(pid !==id)):[...prev,id])
-
     }
- 
+    const fitteredrecipes=recipes.filter((recipe)=>recipe.name===searchResults)
     return (
         <div>
-        <h1 className="font-bold text-3xl py-4">
-                Explore More
+      
+     <h1 className="font-bold text-3xl py-4">
             </h1>
-            <div className="grid p-4 sm:grid-cols-3 gap-4 w-auto lg:grid-cols-5 ">
+        <div className="grid p-4 sm:grid-cols-3 gap-4 w-auto lg:grid-cols-5 ">
                 {recipes.map((card) => {
                     return (
                         <Card key={card.id} className=' m-2 relative' >
@@ -42,17 +41,14 @@ export default function Mart() {
                                     <img src={card.image} alt="photo" className='bg-background h-70 rounded overflow-hidden' />
                                 </div>
                                 <CardDescription>
-
                                 <h6><span>rating :</span>{card.rating}  </h6>
                                 <h1><span>defficulty:</span>{card.difficulty}</h1>
                                 <h1><span>meal types:</span>{card.mealType}</h1>
                                 </CardDescription>
-
                             </CardContent>
                             <CardFooter className='gap-2 my-2 grid'>
                                 <CardAction>
                                       <div className='absolute top-2 right-2 '>
-
                                       {liked.includes(card.id)? (<FcLike size={24} onClick={() => { liking(card.id) }} />) : (
                                           <AiOutlineHeart
                                           size={24}
@@ -61,8 +57,6 @@ export default function Mart() {
                                           />
                                         )}
                                         </div>
-                                                                        
-                                
                                 </CardAction>
                                 <CardAction className='gap-2 grid'>
                                     <Button onClick={() => { HandleOnclik(card.id) }}>view desc</Button>

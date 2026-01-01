@@ -5,12 +5,10 @@ import { githubCallback, googleCallback, login, logout, register } from "../cont
 export const AuthRoutes = Router();
 export const OAuthRoutes = Router();
 
-// Local Auth
 AuthRoutes.post("/register", register);
 AuthRoutes.post("/login", login);
 AuthRoutes.post("/logout", logout);
 
-// Google OAuth
 OAuthRoutes.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 OAuthRoutes.get("/google/callback", passport.authenticate("google", { failureRedirect: "/login",session : false }), googleCallback);
 

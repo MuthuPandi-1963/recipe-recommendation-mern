@@ -15,7 +15,16 @@ export default function Login() {
     
   });
    
-   
+   useEffect(()=>{
+    const userlogin=async () => {
+      try {
+        const res=await fetch("http:localhost:3000/")
+        const data=res.json()
+      } catch (error) {
+        console.log(error)
+      }
+    }
+   },[])
     const validateform=()=>{
       const newmessage={}
       setErrors(newmessage)
@@ -98,15 +107,14 @@ export default function Login() {
                 <Input type="checkbox" className='w-5 mx-5 ' name="terms" onChange={HandleChange}/>
               <p className='flex-nowrap w-full'>  I agree with terms and condition</p>
             </div>
-        </>
-            
+        </>    
           }
-       {
-         signin?<Button onClick={()=>{<Link to="/profile"/>}}>SignUp</Button>:<Button >Login</Button>}
+      <Button> {signin?"SignUp":"Login"}</Button>
         <div className="">
         <div className="">
             <p className='text-center'>or</p>
-            {signin?<h6>Already have an account ? </h6>:<h6>Don't have an account ?</h6>} <span className='text-blue-600 underline font-semibold ' onClick={()=>{handleClick()}}>{signin? <h6>Login Account</h6>:<h6>Create Account</h6>
+            {signin?<h6>Already have an account ? </h6>:<h6>Don't have an account ?</h6>}
+          <span className='text-blue-600 underline font-semibold ' onClick={()=>{handleClick()}}>{signin? <h6>Login Account</h6>:<h6>Create Account</h6>
  } </span>
         </div>
          <div className='text-red-600 '>
@@ -115,8 +123,6 @@ export default function Login() {
           ))}
 </div>
               </div>
-        
-
     </form>
      {!signin && <div className="grid  justify-center gap-4 items-center">
             <p className='mt-4 text-center font-semibold '>Continue With</p>

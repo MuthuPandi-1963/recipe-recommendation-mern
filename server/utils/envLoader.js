@@ -1,10 +1,13 @@
+import dotenv from "dotenv";
 export const envLoader = (key = "")=>{
     if(!key){
         
     }
     const val = process.env[key.toUpperCase()];
     if(!val){
-        throw Error("Environment  Variable its not .env FIle : ",key ,": missing");
+        throw new Error(`Environment Variable missing in .env file: ${key}`);
+
     }
     return val
 }
+dotenv.config();

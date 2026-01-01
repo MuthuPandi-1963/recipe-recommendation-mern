@@ -117,9 +117,6 @@
   body {
     @apply bg-background text-foreground;
   }
-  .background{
-    @apply  bg-[url(D:\recipe\recipe-recommendation-mern\client\src\assets\data\images\pizza.jpeg)] bg-center bg-cover 
-  }
 }
 .form-inputs{
   @apply grid gap-y-2;

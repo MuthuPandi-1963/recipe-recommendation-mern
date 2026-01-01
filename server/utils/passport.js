@@ -4,7 +4,6 @@ import { Strategy as GitHubStrategy } from "passport-github2";
 import User from "../model/user.model.js";
 import { envLoader } from "./envLoader.js";
 
-// 🔹 Google OAuth Strategy
 passport.use(
   new GoogleStrategy(
     {

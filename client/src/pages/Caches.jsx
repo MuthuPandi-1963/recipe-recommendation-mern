@@ -16,7 +16,7 @@ import { ProductContext } from "../Context/ProductContext";
 
 export default function Samplecards() {
   const [liked, setLiked] = useState([]);
-  const [cardselect, setCardselect] = useState(null);
+  const [cardselect, setCardselect] = useState([]);
   const navigate = useNavigate();
 
   const { caches, favorites, setFavorites} = useContext(ProductContext);
@@ -40,6 +40,7 @@ export default function Samplecards() {
 
     setCardselect(id);
   };
+  console.log(cardselect,favorites,liked)
 
   return (
     <div className="grid grid-cols-4 gap-5 my-4 flex-wrap">
@@ -94,3 +95,4 @@ export default function Samplecards() {
     </div>
   );
 }
+

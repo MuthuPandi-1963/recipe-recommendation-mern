@@ -25,15 +25,15 @@ const userSchema = new mongoose.Schema(
       trim: true,
       match: [/^\S+@\S+\.\S+$/, "Please enter a valid email"],
     },
-    password: {
-      type: String,
-      minlength: 6,
-      select: false, // don't return by default for security
-    },
-    isLoggedIn : {
-      type : Boolean,
-      default : false,
-    },
+      password: {
+        type: String,
+        minlength: 6,
+        select: false, // don't return by default for security
+      },
+      isLoggedIn : {
+        type : Boolean,
+        default : false,
+      },
     role: {
       type: String,
       enum: ["user", "admin"],
